@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+#sait {
+	height:36px;
+	line-height:36px;
+	background:url(../images/sait_bg.png);
+	border:1px solid #C5E4FF;
+	border-top:none;
+	color:#333;
+	padding:0 0 0 15px;
+}
+#reg form {
+	width:350px;
+	margin:0 auto;
+}
+#reg form dl {
+	margin:10px 0;
+}
+#reg form dl dd {
+	margin:5px 0;
+}
+#reg form dl dd input.text {
+	width:200px;
+	height:20px;
+	border:1px solid #666;
+	background:#fff;
+}
+#reg form dl dd input.submit {
+	margin:0 0 0 120px;
+	cursor:pointer;
+}
