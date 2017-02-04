@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>在线商城系统</title>
+	<title>在线商城1系统</title>
 	<link rel="stylesheet" type="text/css" href="view/default/style/basic.css" />
 	<link rel="stylesheet" type="text/css" href="view/default/style/cart.css" />
 	<script type="text/javascript" src="view/default/js/jquery.js"></script>
