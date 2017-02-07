@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-01-29 22:41:07
+<?php /* Smarty version 2.6.26, created on 2017-02-07 21:57:30
          compiled from admin/order/index.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'admin/order/index.tpl', 26, false),)), $this); ?>
@@ -30,16 +30,39 @@ smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format
 				<td>
 					<a href="?a=order&m=update&id=<?php echo $this->_tpl_vars['value']['id']; ?>
 "><?php echo $this->_tpl_vars['value']['ordernum']; ?>
-</td>
+</a></td>
 					<td><?php echo ((is_array($_tmp=$this->_tpl_vars['value']['date'])) ? $this->_run_mod_handler('date_format', true, $_tmp, '%Y-%m-%d %H:%M:%S') : smarty_modifier_date_format($_tmp, '%Y-%m-%d %H:%M:%S')); ?>
 </td>
 					<td><?php echo $this->_tpl_vars['value']['price']; ?>
-</td>
+/元</td>
 					<td>
-						<?php echo $this->_tpl_vars['value']['order_state']; ?>
-，<?php echo $this->_tpl_vars['value']['order_pay']; ?>
-，<?php echo $this->_tpl_vars['value']['order_delivery']; ?>
-
+						<?php if ($this->_tpl_vars['value']['order_state'] == '已取消'): ?>
+							订单已取消
+						<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_state'] == '未确认'): ?>
+							订单未确认，等待确认
+							<?php else: ?>
+									<?php if ($this->_tpl_vars['value']['order_delivery'] == '已完成'): ?>
+									该订单已完成
+									<?php else: ?>
+									<?php if ($this->_tpl_vars['value']['order_delivery'] == '已发货'): ?>
+									等待收货
+									<?php else: ?>
+									<?php if ($this->_tpl_vars['value']['order_delivery'] == '已配货'): ?>
+									准备发货
+									<?php else: ?>
+									<?php if ($this->_tpl_vars['value']['order_pay'] == '已支付'): ?>
+									订单已付款，等待配货
+									<?php else: ?>
+									<?php if ($this->_tpl_vars['value']['order_state'] == '已确认'): ?>
+									订单已确认，等待付款
+												<?php endif; ?>
+											<?php endif; ?>
+										<?php endif; ?>
+									<?php endif; ?>
+								<?php endif; ?>
+							<?php endif; ?>
+						<?php endif; ?>
 					</td>
 					<td>
 						<a href="?a=order&m=update&id=<?php echo $this->_tpl_vars['value']['id']; ?>

@@ -43,7 +43,7 @@
 		}
 
 		//删除指定内容
-		public function delProduct(){
+		public function deleteOrder(){
 			$_where = array();
 			if(isset($_GET['id'])){
 				list($_id) = $this->getRequest()->getParam(array($_GET['id']));
@@ -52,7 +52,7 @@
 					$this->_checkObj->error();
 				}
 			}
-			return parent::delete($_where);
+			return parent::delete(array("id='{$_id}'","order_state='2'"));
 		}
 
 		//获取指定的一条数据
@@ -82,6 +82,23 @@
 			$_updataData = $this->getRequest()->update($this->_fields);
 			return parent::update($_updataData,array('where'=>$_where));
 		}
+
+		//修改状态
+		public function updateState($order,$states){
+			list($_id) = $this->getRequest()->getParam(array($_GET['id']));
+			$_where = array("id='{$_id}'");
+			if(!$this->_checkObj->findOneCheck($this,$_where)){
+				$this->_checkObj->error();
+			}
+			return $this->updateOS($order,$states,$_where);
+		}
+		
+		private function updateOS($order,$states,$_where){
+			$_updataData[$order] = $states;
+			return parent::update($_updataData,array('where'=>$_where));
+		}
+
+
 
 		//修改指定的一条订单数据根据订单号
 		public function updateOrderNum() {
@@ -117,9 +134,9 @@
 			if(!$this->_checkObj->findOneCheck($this,$_where)){
 				$this->_checkObj->error();
 			}
-			$_memberObj = new MemberModel();
-			$_memberId = $_memberObj->findOneMember($_SESSION['member']);
-			$orderDetais = parent::select(array('*'),array('where'=>array("user='{$_memberId['0']['id']}'","id=$_id"),'limit'=>1));
+			/*$_memberObj = new MemberModel();
+			$_memberId = $_memberObj->findOneMember($_SESSION['member']);*/
+			$orderDetais = parent::select(array('*'),array('where'=>array("id=$_id"),'limit'=>1));
 			$orderDetais = $this->states($orderDetais);
 			if(!empty($orderDetais)){
 				foreach ($orderDetais as $key => $value) {

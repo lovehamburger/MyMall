@@ -112,8 +112,8 @@
 				<input type="radio" name="order_pay" {if $oneOrder.order_pay == '已付款'}checked="checked"{/if} value="已付款" />
 				已付款
 			</dd> -->
+			{if $oneOrder.order_pay=='已支付'}
 			<dd>
-				
 				配送状态：
 				<input type="radio" name="order_delivery" {if $oneOrder.order_delivery == '未发货'}checked="checked"{/if} value="0" />
 				未发货
@@ -121,8 +121,9 @@
 				已配货
 				<input type="radio" name="order_delivery" {if $oneOrder.order_delivery == '已发货'}checked="checked"{/if} value="2" />
 				已发货
-				{if $oneOrder.order_pay=='已支付'}用户已支付,支付方式：{$oneOrder.pay}{/if}
+				{if $oneOrder.order_pay=='已支付'}<span style="color: green">用户已支付,支付方式：{$oneOrder.pay}</span>{/if}
 			</dd>
+			{/if}
 			<dd>
 				<input type="submit" name="send" class="submit" value="修改订单" />
 			</dd>

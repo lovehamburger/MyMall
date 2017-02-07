@@ -33,7 +33,7 @@
 		//删除订单
 		public function delete(){
 			if(!empty($_GET)){
-				$this->_modelObj->deleteOrder() ?$this->_redirectObj->succ('?a=goods','订单删除成功!') : $this->_redirectObj->error('订单删除失败!');
+				$this->_modelObj->deleteOrder() ? $this->_redirectObj->succ('?a=goods','订单删除成功!') : $this->_redirectObj->error('订单删除失败,请确认该订单是否处于取消状态!');
 			}
 			
 		}

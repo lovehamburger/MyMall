@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-01-29 23:49:20
+<?php /* Smarty version 2.6.26, created on 2017-02-07 22:59:11
          compiled from admin/order/update.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -135,8 +135,8 @@
 				<input type="radio" name="order_pay" <?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已付款'): ?>checked="checked"<?php endif; ?> value="已付款" />
 				已付款
 			</dd> -->
+			<?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已支付'): ?>
 			<dd>
-				
 				配送状态：
 				<input type="radio" name="order_delivery" <?php if ($this->_tpl_vars['oneOrder']['order_delivery'] == '未发货'): ?>checked="checked"<?php endif; ?> value="0" />
 				未发货
@@ -144,9 +144,10 @@
 				已配货
 				<input type="radio" name="order_delivery" <?php if ($this->_tpl_vars['oneOrder']['order_delivery'] == '已发货'): ?>checked="checked"<?php endif; ?> value="2" />
 				已发货
-				<?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已支付'): ?>用户已支付,支付方式：<?php echo $this->_tpl_vars['oneOrder']['pay']; ?>
-<?php endif; ?>
+				<?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已支付'): ?><span style="color: green">用户已支付,支付方式：<?php echo $this->_tpl_vars['oneOrder']['pay']; ?>
+</span><?php endif; ?>
 			</dd>
+			<?php endif; ?>
 			<dd>
 				<input type="submit" name="send" class="submit" value="修改订单" />
 			</dd>

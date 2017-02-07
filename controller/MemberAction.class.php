@@ -99,6 +99,33 @@ class MemberAction extends Action
 		}
 	}
 
+	//订单确认收货
+	public function harvest(){
+		if(!empty($_GET['id']) && !empty($_SESSION['member'])){
+			if($this->_order->updateState('order_delivery',3)){
+				$this->_redirectObj->succ('?a=member&m=order','确认收获成功!');
+			}else{
+				$this->_redirectObj->error('确认收获失败!');
+			}
+		}else{
+			$this->_redirectObj->error('非法访问!');
+		}
+	}
+
+	//前台取消订单
+	public function remove(){
+		if(!empty($_GET['id']) && !empty($_SESSION['member'])){
+			if($this->_order->updateState('order_state',2)){
+				$this->_redirectObj->succ('?a=member&m=order','取消订单成功!');
+			}else{
+				$this->_redirectObj->error('取消订单失败!');
+			}
+		}else{
+			$this->_redirectObj->error('非法访问!');
+		}
+	}
+
+
 /*********************************个人中心end****************************************/
 
 	//会员登录

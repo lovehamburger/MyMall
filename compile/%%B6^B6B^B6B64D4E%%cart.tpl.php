@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-01-31 20:54:24
+<?php /* Smarty version 2.6.26, created on 2017-02-04 16:16:05
          compiled from default/public/cart.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -109,4 +109,4 @@ $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 </body>
-</html>
+</html>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-01-29 22:52:16
+<?php /* Smarty version 2.6.26, created on 2017-02-04 16:16:13
          compiled from default/public/flow.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -232,6 +232,10 @@ unset($_smarty_tpl_vars);
 				<div style="border: none;text-align:center;" name="sendOrder"><img src="view/default/images/order.gif" alt="提交订单" /></div>
 			</p>
 		</form>
-
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/footer.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 </body>
 	</html>

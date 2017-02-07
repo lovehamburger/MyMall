@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-01 22:03:42
+<?php /* Smarty version 2.6.26, created on 2017-02-07 23:52:53
          compiled from default/public/member_order.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'default/public/member_order.tpl', 28, false),)), $this); ?>
@@ -45,16 +45,47 @@ unset($_smarty_tpl_vars);
 				<td><?php echo $this->_tpl_vars['value']['price']; ?>
 /元</td>
 				<td>
-					<?php echo $this->_tpl_vars['value']['order_state']; ?>
-，<?php echo $this->_tpl_vars['value']['order_pay']; ?>
-，<?php echo $this->_tpl_vars['value']['order_delivery']; ?>
-
+					<?php if ($this->_tpl_vars['value']['order_state'] == '已取消'): ?>
+							订单已取消
+						<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_delivery'] == '已完成'): ?>
+							该订单已完成
+							<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_delivery'] == '已发货'): ?>
+							等待收货
+							<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_delivery'] == '已配货'): ?>
+							准备发货
+							<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_pay'] == '已支付'): ?>
+							订单已付款，等待配货
+							<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_state'] == '已确认'): ?>
+							订单已确认，等待付款
+							<?php else: ?>
+							<?php if ($this->_tpl_vars['value']['order_state'] == '未确认'): ?>
+							订单未确认，等待确认
+												<?php endif; ?>
+											<?php endif; ?>
+										<?php endif; ?>
+									<?php endif; ?>
+								<?php endif; ?>
+							<?php endif; ?>
+						<?php endif; ?>
 					<p><a href="?a=member&m=order_details&id=<?php echo $this->_tpl_vars['value']['id']; ?>
 ">订单详情</a></p>
 				</td>
-				<td><?php if ($this->_tpl_vars['value']['order_pay'] == '未支付'): ?><a href="?a=member&m=yeepay&id=<?php echo $this->_tpl_vars['value']['id']; ?>
-">付款</a><?php endif; ?> 取消</td>
-				<?php endforeach; else: ?>
+				<td>
+				<?php if ($this->_tpl_vars['value']['order_pay'] == '未支付' && $this->_tpl_vars['value']['order_state'] !== '已取消'): ?><a href="?a=member&m=yeepay&id=<?php echo $this->_tpl_vars['value']['id']; ?>
+">付款</a><?php endif; ?>
+				<?php if ($this->_tpl_vars['value']['order_state'] == '已取消'): ?>已取消<?php endif; ?>
+				<?php if ($this->_tpl_vars['value']['order_delivery'] == '已完成'): ?>已完成<?php endif; ?>
+				<?php if ($this->_tpl_vars['value']['order_delivery'] == '已发货'): ?><a href="?a=member&m=harvest&id=<?php echo $this->_tpl_vars['value']['id']; ?>
+" onclick="return confirm('请确认是否已收到物品，以免造成钱货两清哦！') ? true : false">确认收货</a> <a href="?a=member&m=&id=<?php echo $this->_tpl_vars['value']['id']; ?>
+" onclick="return confirm('请确认是否已收到物品，以免造成钱货两清哦！') ? true : false">退款/退货</a> <?php endif; ?>
+				<?php if ($this->_tpl_vars['value']['order_state'] !== '已取消' && $this->_tpl_vars['value']['order_delivery'] !== '已完成' && $this->_tpl_vars['value']['order_delivery'] !== '已发货'): ?><a href="?a=member&m=remove&id=<?php echo $this->_tpl_vars['value']['id']; ?>
+">取消<?php endif; ?></a></td>
+				<?php endforeach; else: ?>              
 				<td colspan="5">没有数据</td>
 			</tr>
 			<?php endif; unset($_from); ?>
