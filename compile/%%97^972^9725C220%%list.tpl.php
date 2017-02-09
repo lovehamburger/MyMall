@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-08 19:15:23
+<?php /* Smarty version 2.6.26, created on 2017-02-09 11:41:26
          compiled from default/public/list.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,7 +61,7 @@ unset($_smarty_tpl_vars);
 			</dl>
 		<?php endforeach; endif; unset($_from); ?>
 			<p>
-				<a href="?a=details&id=11">查看更多</a>
+				<a href="##">查看更多</a>
 			</p>
 		</div>
 		<h2>浏览记录</h2>
@@ -100,7 +100,6 @@ unset($_smarty_tpl_vars);
 				</dd>
 			</dl>
 			<p>
-				<a href="?a=details&id=11">查看更多</a>
 				<a href="?a=details&id=11">清空</a>
 			</p>
 		</div>

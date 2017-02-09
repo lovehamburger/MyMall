@@ -102,6 +102,11 @@
 				<input type="radio" name="is_up" value="1" {if $oneGoods.0.is_up == 1}checked="checked"{/if} />
 				是
 				<input type="radio" name="is_up" value="0" {if $oneGoods.0.is_up == 0}checked="checked"{/if}/>
+				否
+				是否推荐：
+				<input type="radio" name="recommend" value="1" {if $oneGoods.0.recommend == 1}checked="checked"{/if} />
+				是
+				<input type="radio" name="recommend" value="0" {if $oneGoods.0.recommend == 0}checked="checked"{/if}/>
 				否　　
 				免 运 费：
 				<input type="radio" name="is_freight" value="1" {if $oneGoods.0.is_up == 1}checked="checked"{/if} />

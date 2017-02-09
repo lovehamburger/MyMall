@@ -6,7 +6,7 @@
 	{
 		public function __construct(){
 			parent::__construct();//验证对象及本模型对象
-			$this->_fields = array('id','nav','bread','sn','name','price_sale','price_market','price_cost','keyword','unit','weight','thumbnail','thumbnail2','content','is_up','is_freight','inventory','warn_inventory','sales','service','date','attr');
+			$this->_fields = array('id','nav','bread','sn','name','price_sale','price_market','price_cost','keyword','unit','weight','thumbnail','thumbnail2','content','is_up','recommend','is_freight','inventory','warn_inventory','sales','service','date','attr');
 			$this->_tables = array(DB_FREFIX.'goods');
 			$this->_checkObj = new GoodsCheck();
 		}
@@ -85,6 +85,11 @@
 			}
 		}
 
+		//获取推荐商品
+		public function recommend(){
+			return parent::select(array('thumbnail2','price_sale','name','id','nav','price_market'),array('limit'=>'0,5','where'=>array("recommend='1'")));
+		}
+
 		//获取当月热销
 		public function hotProduct(){
 			return parent::select(array('thumbnail2','price_sale','name','id','nav'),array('order'=>"sales desc",'limit'=>'0,5'));
@@ -138,7 +143,7 @@
 				return $_detailGoods;
 			}
 			$this->_tables = array(DB_FREFIX.'goods a',DB_FREFIX.'bread b');
-			$_detailGoods = parent::select(array('a.id,a.sn,a.price_sale,a.price_market,a.keyword,a.unit,a.weight,a.thumbnail,a.thumbnail2,a.content,a.is_up,a.is_freight,a.inventory,a.warn_inventory,a.sales,a.service,a.name,a.attr,b.name bread'),array('where'=>array("a.id='{$_goodsid}' and b.id = '{$_detailGoods['0']['bread']}'"),'limit' =>'1'));
+			$_detailGoods = parent::select(array('a.id,a.recommend,a.sn,a.price_sale,a.price_market,a.keyword,a.unit,a.weight,a.thumbnail,a.thumbnail2,a.content,a.is_up,a.is_freight,a.inventory,a.warn_inventory,a.sales,a.service,a.name,a.attr,b.name bread'),array('where'=>array("a.id='{$_goodsid}' and b.id = '{$_detailGoods['0']['bread']}'"),'limit' =>'1'));
 			$_detailGoods['0']['content'] = htmlspecialchars_decode($_detailGoods['0']['content']);
 			$this->_tables = array(DB_FREFIX.'goods');
 			return $_detailGoods;

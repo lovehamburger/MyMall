@@ -94,7 +94,15 @@
 				<input type="radio" name="is_up" value="1" checked="checked" />
 				是
 				<input type="radio" name="is_up" value="0" />
-				否　　免 运 费：
+				否  
+
+				是否推荐：
+				<input type="radio" name="recommend" value="1"  />
+				是
+				<input type="radio" name="recommend" value="0" checked="checked"/>
+				否
+				　　
+				免 运 费：
 				<input type="radio" name="is_freight" value="1" checked="checked" />
 				是
 				<input type="radio" name="is_freight" value="0" />

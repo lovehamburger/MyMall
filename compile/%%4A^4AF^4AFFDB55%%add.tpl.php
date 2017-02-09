@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-01-29 09:43:10
+<?php /* Smarty version 2.6.26, created on 2017-02-09 11:10:53
          compiled from admin/goods/add.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -106,7 +106,15 @@
 				<input type="radio" name="is_up" value="1" checked="checked" />
 				是
 				<input type="radio" name="is_up" value="0" />
-				否　　免 运 费：
+				否  
+
+				是否推荐：
+				<input type="radio" name="recommend" value="1"  />
+				是
+				<input type="radio" name="recommend" value="0" checked="checked"/>
+				否
+				　　
+				免 运 费：
 				<input type="radio" name="is_freight" value="1" checked="checked" />
 				是
 				<input type="radio" name="is_freight" value="0" />

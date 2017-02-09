@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-08 19:23:24
+<?php /* Smarty version 2.6.26, created on 2017-02-09 11:45:16
          compiled from default/public/details.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -66,7 +66,7 @@ unset($_smarty_tpl_vars);
 			</dl>
 		<?php endforeach; endif; unset($_from); ?>
 			<p>
-				<a href="?a=details&id=11">查看更多</a>
+				<a href="##">查看更多</a>
 			</p>
 		</div>
 		<h2>浏览记录</h2>
@@ -105,7 +105,6 @@ unset($_smarty_tpl_vars);
 				</dd>
 			</dl>
 			<p>
-				<a href="###">查看更多</a>
 				<a href="###">清空</a>
 			</p>
 		</div>
@@ -113,7 +112,7 @@ unset($_smarty_tpl_vars);
 	<form action="?a=cart&m=addProduct" method="post">
 	<div id="main">
 		<h2><?php echo $this->_tpl_vars['detailGoods']['name']; ?>
-</h2>
+<span style="color: green"><?php if ($this->_tpl_vars['detailGoods']['recommend'] == 1): ?>[推荐]<?php endif; ?></span></h2>
 		<dl class="pic">
 			<dt>
 				<a href="###">

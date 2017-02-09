@@ -39,7 +39,7 @@
 			</dl>
 		{/foreach}
 			<p>
-				<a href="?a=details&id=11">查看更多</a>
+				<a href="##">查看更多</a>
 			</p>
 		</div>
 		<h2>浏览记录</h2>
@@ -78,7 +78,6 @@
 				</dd>
 			</dl>
 			<p>
-				<a href="?a=details&id=11">查看更多</a>
 				<a href="?a=details&id=11">清空</a>
 			</p>
 		</div>
