@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="view/default/js/cart.js"></script>
 </head>
 <body>
+{include file='default/public/kf.tpl'}
 	<form action="?a=cart&m=flow" method="POST">
 		{include file='default/public/header.tpl'}
 		<table id="cart" cellspacing="1">
@@ -56,8 +57,11 @@
 				<td>
 					<a href="?a=cart&m=delete&id={$value.id}" onclick="return confirm('确定要删除吗') ? true : false">删除</a>
 				</td>
+			
 			</tr>
 			{/foreach}
+			{foreachelse}
+				<td colspan="7">没有任何数据</td>
 		{/foreach}
 		</table>
 		<div id="page">{$page}</div>

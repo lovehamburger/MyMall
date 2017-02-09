@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-04 16:16:13
+<?php /* Smarty version 2.6.26, created on 2017-02-08 16:51:56
          compiled from default/public/flow.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,11 +16,15 @@ $this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/header
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
+	<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/kf.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 	<form method="post" name="flow" action="?a=cart&m=order">
 		<table id="cart" cellspacing="1">
 			<caption>商品列表</caption>
 			<tr>
-				<!-- <th>编号</th> -->
 				<th>名称</th>
 				<th>属性</th>
 				<th class="th">售价</th>
@@ -50,6 +54,10 @@ unset($_smarty_tpl_vars);
 </td>
 					<td style="color: green"><?php echo $this->_tpl_vars['value']['nums']*$this->_tpl_vars['value']['price_sale']; ?>
 /元</td>
+					<td style="display: none" name="cartid"><?php echo $this->_tpl_vars['value']['id']; ?>
+</td>
+					<td style="display: none" name="goodsid"><?php echo $this->_tpl_vars['value']['goods_id']; ?>
+</td>
 				</tr>	
 			<?php endforeach; endif; unset($_from); ?>
 		</table>

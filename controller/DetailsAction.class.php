@@ -13,6 +13,7 @@
 			$this->_tpl->assign('topNav',$this->_nav->getTopNav());
 			$this->_tpl->assign('BreadNav',$this->_nav->getBreadNav());
 			$this->_tpl->assign('mainNav',$this->_nav->getMainNav());
+			$this->_tpl->assign('hotProduct',$this->_goods->hotProduct());
 			$this->_tpl->assign('detailGoods',$this->_goods->findDetailGoods()['0']);
 			$this->_tpl->display(SMARTY_FRONT.'public/details.tpl');
 		}

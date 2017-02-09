@@ -11,6 +11,7 @@
 </head>
 <body>
 	{include file='default/public/header.tpl'}
+	{include file='default/public/kf.tpl'}
 	<div id="reg">
 		<form action="?a=member&m=login" name="login" method="post">
 			<input type="hidden" name="ajaxlogin" id="ajaxlogin" val=''/>

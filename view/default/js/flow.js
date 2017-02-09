@@ -33,6 +33,10 @@ $(function(){
 		var price = $('#price').html();//总金额
 		var delivery_price = $('#delivery').html();//运费
 		var pay_price = $('#pay').html();//支付手续费
+		var cartid = '';
+		$('td[name=cartid]').each(function(index) {
+			cartid+= $(this).text()+',';
+		});
 		$.ajax({
 			url: '?a=cart&m=order',
 			type: 'post',
@@ -51,6 +55,7 @@ $(function(){
 					price:price,
 					delivery_price:delivery_price,
 					pay_price:pay_price,
+					cartid:cartid,
 					},
 			success:function(data){
 				location.href='?a=member&m=yeepay&id='+data+'';

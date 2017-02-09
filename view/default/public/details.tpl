@@ -11,6 +11,7 @@
 </head>
 <body>
 	{include file='default/public/header.tpl'}
+	{include file='default/public/kf.tpl'}
 	<div id="sidebar">
 		<h2>{$mainNav.name}</h2>
 		<ul>
@@ -27,41 +28,21 @@
 		</ul>
 		<h2>当月热销</h2>
 		<div style="margin:0 0 10px 0">
-			<dl style="border:none;">
-				<dt>
-					<a href="###">
-						<img src="view/default/images/pro_list_demo_small.jpg" alt="连衣裙" title="连衣裙" />
-					</a>
-				</dt>
-				<dd class="price">￥158.00</dd>
-				<dd class="title">
-					<a href="###">春秋装韩版蕾丝打底长袖修身性感连衣裙品质显瘦女裙子</a>
-				</dd>
-			</dl>
+		{foreach from=$hotProduct key=key item=value}
 			<dl>
 				<dt>
-					<a href="###">
-						<img src="view/default/images/pro_list_demo_small.jpg" alt="连衣裙" title="连衣裙" />
+					<a href="?a=details&navid={$value.nav}&goodsid={$value.id}">
+						<img style="width: 102px;height: 102px" src="{$value.thumbnail2}" alt="{$value.name}" title="{$value.name}" />
 					</a>
 				</dt>
-				<dd class="price">￥158.00</dd>
+				<dd class="price">￥{$value.price_sale}</dd>
 				<dd class="title">
-					<a href="###">春秋装韩版蕾丝打底长袖修身性感连衣裙品质显瘦女裙子</a>
+					<a href="?a=details&id=11">{$value.name}</a>
 				</dd>
 			</dl>
-			<dl>
-				<dt>
-					<a href="###">
-						<img src="view/default/images/pro_list_demo_small.jpg" alt="连衣裙" title="连衣裙" />
-					</a>
-				</dt>
-				<dd class="price">￥158.00</dd>
-				<dd class="title">
-					<a href="###">春秋装韩版蕾丝打底长袖修身性感连衣裙品质显瘦女裙子</a>
-				</dd>
-			</dl>
+		{/foreach}
 			<p>
-				<a href="###">查看更多</a>
+				<a href="?a=details&id=11">查看更多</a>
 			</p>
 		</div>
 		<h2>浏览记录</h2>
@@ -136,7 +117,7 @@
 			<dd>所属品牌：{$detailGoods.bread}</dd>
 			<dd>
 				销 售 量：
-				<span class="sale_num">136</span>
+				<span class="sale_num">{$detailGoods.sales}</span>
 				{$detailGoods.unit}
 			</dd>
 			<dd>

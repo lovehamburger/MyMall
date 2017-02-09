@@ -10,6 +10,7 @@
 </head>
 <body>
 	{include file='default/public/header.tpl'}
+	{include file='default/public/kf.tpl'}
 	{include file='default/public/member_sidebar.tpl'}
 	<div id="main">
 		<h2>收货地址</h2>

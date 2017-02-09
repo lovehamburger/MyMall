@@ -85,6 +85,11 @@
 			}
 		}
 
+		//获取当月热销
+		public function hotProduct(){
+			return parent::select(array('thumbnail2','price_sale','name','id','nav'),array('order'=>"sales desc",'limit'=>'0,5'));
+		}
+
 		//删除指定内容
 		public function deleteGoods(){
 			list($_id) = $this->getRequest()->getParam(array($_GET['id']));
@@ -93,6 +98,19 @@
 				$this->_checkObj->error();
 			}
 			return parent::delete($_where);
+		}
+
+		//提交订单后减库存加销售量
+		public function reduceInventory($cartid){
+			$this->_tables = array(DB_FREFIX.'cart');
+			$cartid = substr($cartid,0,-1);
+			$cart = parent::select(array('goods_id','nums'),array('where'=>array("id in ($cartid)")));
+			$this->_tables = array(DB_FREFIX.'goods');
+			foreach ($cart as $key => $value) {
+				parent::update(array('inventory'=>array("inventory-{$value['nums']}")),array('where'=>array("id={$value['goods_id']}")));
+				parent::update(array('sales'=>array("sales+{$value['nums']}")),array('where'=>array("id={$value['goods_id']}")));
+			}
+			
 		}
 
 		//获取指定的一条数据

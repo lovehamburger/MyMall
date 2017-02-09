@@ -80,7 +80,30 @@
 				$this->_checkObj->error();
 			}
 			$_updataData = $this->getRequest()->update($this->_fields);
+			if(!empty($_POST['good']) && $_POST['order_state'] == 2){
+				$this->_tables = array(DB_FREFIX.'goods');
+				foreach ($_POST['good'] as $key => $value) {
+					parent::update(array('inventory'=>array("inventory+{$value[0]}")),array('where'=>array("id={$value['1']}")));
+				}
+			}
+			$this->_tables = array(DB_FREFIX.'order');
 			return parent::update($_updataData,array('where'=>$_where));
+		}
+
+		public function backInventory(){
+			list($_id) = $this->getRequest()->getParam(array($_GET['id']));
+			$_where = array("id='{$_id}'");
+			if(!$this->_checkObj->findOneCheck($this,$_where)){
+				$this->_checkObj->error();
+			}
+			$orderGoods = parent::select(array('goods'),array('where'=>array("id='{$_id}'")));
+			$orderGoods = unserialize(base64_decode($orderGoods[0]['goods']));
+			$this->_tables = array(DB_FREFIX.'goods');
+			foreach ($orderGoods as $key => $value) {
+				parent::update(array('inventory'=>array("inventory+{$value[3]}")),array('where'=>array("id={$value[6]}")));
+				parent::update(array('sales'=>array("sales-{$value[3]}")),array('where'=>array("id={$value[6]}")));
+			}
+			$this->_tables = array(DB_FREFIX.'order');
 		}
 
 		//修改状态
@@ -145,9 +168,6 @@
 			}else{
 				$this->_checkObj->error();
 			}
-			
-			/*echo "<pre>";
-			print_r($orderDetais);*/
 			return $orderDetais;
 		}
 

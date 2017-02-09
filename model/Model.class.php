@@ -8,6 +8,7 @@
 		protected $_fields = array();//数据库存在的字段
 		protected $_limit = '';//分页条数
 		protected $_checkObj;//验证对象
+		protected $_tables = array();
 
 		//是否使用请求类
 		protected function getRequest(){

@@ -116,6 +116,7 @@ class MemberAction extends Action
 	public function remove(){
 		if(!empty($_GET['id']) && !empty($_SESSION['member'])){
 			if($this->_order->updateState('order_state',2)){
+				$this->_order->backInventory();//回滚订单库存
 				$this->_redirectObj->succ('?a=member&m=order','取消订单成功!');
 			}else{
 				$this->_redirectObj->error('取消订单失败!');

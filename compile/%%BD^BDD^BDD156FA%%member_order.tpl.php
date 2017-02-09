@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-07 23:52:53
+<?php /* Smarty version 2.6.26, created on 2017-02-08 15:38:07
          compiled from default/public/member_order.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('modifier', 'date_format', 'default/public/member_order.tpl', 28, false),)), $this); ?>
@@ -16,7 +16,11 @@ $this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/header
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/kf.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/member_sidebar.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;

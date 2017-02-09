@@ -10,11 +10,11 @@
 </head>
 <body>
 	{include file='default/public/header.tpl'}
+	{include file='default/public/kf.tpl'}
 	<form method="post" name="flow" action="?a=cart&m=order">
 		<table id="cart" cellspacing="1">
 			<caption>商品列表</caption>
 			<tr>
-				<!-- <th>编号</th> -->
 				<th>名称</th>
 				<th>属性</th>
 				<th class="th">售价</th>
@@ -34,6 +34,8 @@
 					<td>{$value.price_sale}</td>
 					<td>{$value.nums}</td>
 					<td style="color: green">{$value.nums*$value.price_sale}/元</td>
+					<td style="display: none" name="cartid">{$value.id}</td>
+					<td style="display: none" name="goodsid">{$value.goods_id}</td>
 				</tr>	
 			{/foreach}
 		</table>

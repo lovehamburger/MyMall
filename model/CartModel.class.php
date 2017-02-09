@@ -53,11 +53,20 @@
 			return parent::delete($_where);
 		}
 
+		/*
+			提交订单成功后删除购物车商品
+		 */
+		public function deleteCart($cartid){
+			$this->_tables = array(DB_FREFIX.'cart');
+			$cartid = substr($cartid,0,-1);
+			$_where = array("id in ($cartid)");
+			parent::delete($_where);
+		}
+
 		//修改购物车中的商品数量
 		public function updateCart(){
 			if(intval($_POST['id'])){
 				list($_id) = $this->getRequest()->getParam(array($_POST['id']));
-				echo $_id;
 				$_where = array("id='{$_id}'");
 				if(!$this->_checkObj->findOneCheck($this,$_where)){
 					$this->_checkObj->error();
@@ -72,7 +81,7 @@
 			if(is_array($cartid)){
 				$cartidStr = implode(',', $cartid);
 				$this->_tables = array(DB_FREFIX.'cart a',DB_FREFIX.'goods b');
-				$cartRes = parent::select(array('a.id,a.attr,a.nums,b.name,b.price_sale'),array('where'=>array("a.id in ($cartidStr)","a.goods_id=b.id")));
+				$cartRes = parent::select(array('a.id,a.goods_id,a.attr,a.nums,b.name,b.price_sale'),array('where'=>array("a.id in ($cartidStr)","a.goods_id=b.id")));
 				foreach ($cartRes as $key => $value) {
 					if(!empty($value['attr'])){
 						$cartRes[$key]['attr'] = unserialize(base64_decode($value['attr']));

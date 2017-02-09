@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-07 22:59:11
+<?php /* Smarty version 2.6.26, created on 2017-02-09 10:52:40
          compiled from admin/order/update.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,7 +26,7 @@
 				<th class="th">小计</th>
 			</tr>
 			<?php $this->assign('total', 0); ?>
-	<?php $_from = $this->_tpl_vars['oneOrder']['goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+		<?php $_from = $this->_tpl_vars['oneOrder']['goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
     foreach ($_from as $this->_tpl_vars['key'] => $this->_tpl_vars['value']):
 ?>
 			<tr>
@@ -42,7 +42,7 @@
 /元</td>
 			</tr>
 			<?php $this->assign('total', $this->_tpl_vars['total']+$this->_tpl_vars['value']['2']*$this->_tpl_vars['value']['3']); ?>
-			<?php endforeach; endif; unset($_from); ?>
+		<?php endforeach; endif; unset($_from); ?>
 		</table>
 
 		<table id="cart" cellspacing="1">
@@ -119,6 +119,7 @@
 	<form method="post" name="update" action="?a=order&m=update&id=<?php echo $this->_tpl_vars['oneOrder']['id']; ?>
 ">
 		<dl class="form">
+		<?php if ($this->_tpl_vars['oneOrder']['order_pay'] !== '已支付'): ?>
 			<dd>
 				订单状态：
 				<input type="radio" name="order_state" <?php if ($this->_tpl_vars['oneOrder']['order_state'] == '未确认'): ?>checked="checked"<?php endif; ?> value="0" />
@@ -127,6 +128,16 @@
 				已确认
 				<input type="radio" name="order_state" <?php if ($this->_tpl_vars['oneOrder']['order_state'] == '已取消'): ?>checked="checked"<?php endif; ?> value="2" />
 				已取消
+			<?php $_from = $this->_tpl_vars['oneOrder']['goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['key'] => $this->_tpl_vars['value']):
+?>
+				<input type="text" name="good[<?php echo $this->_tpl_vars['key']; ?>
+][]" value="<?php echo $this->_tpl_vars['value']['3']; ?>
+" />
+				<input type="text" name="good[<?php echo $this->_tpl_vars['key']; ?>
+][]" value="<?php echo $this->_tpl_vars['value']['6']; ?>
+" />
+			<?php endforeach; endif; unset($_from); ?>
 			</dd>
 			<!-- <dd>
 				支付状态：
@@ -135,7 +146,7 @@
 				<input type="radio" name="order_pay" <?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已付款'): ?>checked="checked"<?php endif; ?> value="已付款" />
 				已付款
 			</dd> -->
-			<?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已支付'): ?>
+			
 			<dd>
 				配送状态：
 				<input type="radio" name="order_delivery" <?php if ($this->_tpl_vars['oneOrder']['order_delivery'] == '未发货'): ?>checked="checked"<?php endif; ?> value="0" />
@@ -144,12 +155,13 @@
 				已配货
 				<input type="radio" name="order_delivery" <?php if ($this->_tpl_vars['oneOrder']['order_delivery'] == '已发货'): ?>checked="checked"<?php endif; ?> value="2" />
 				已发货
-				<?php if ($this->_tpl_vars['oneOrder']['order_pay'] == '已支付'): ?><span style="color: green">用户已支付,支付方式：<?php echo $this->_tpl_vars['oneOrder']['pay']; ?>
-</span><?php endif; ?>
 			</dd>
+			<input type="submit" name="send" class="submit" value="修改订单" />
+			<?php else: ?>
+				<span style="color: green">用户已支付,支付方式：<?php echo $this->_tpl_vars['oneOrder']['pay']; ?>
+</span>
 			<?php endif; ?>
 			<dd>
-				<input type="submit" name="send" class="submit" value="修改订单" />
 			</dd>
 		</dl>
 	</form>

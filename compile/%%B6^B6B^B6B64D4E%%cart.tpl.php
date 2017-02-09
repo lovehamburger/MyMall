@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-02-04 16:16:05
+<?php /* Smarty version 2.6.26, created on 2017-02-08 17:18:55
          compiled from default/public/cart.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,6 +11,11 @@
 	<script type="text/javascript" src="view/default/js/cart.js"></script>
 </head>
 <body>
+<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/kf.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
 	<form action="?a=cart&m=flow" method="POST">
 		<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/header.tpl', 'smarty_include_vars' => array()));
@@ -82,9 +87,12 @@ unset($_smarty_tpl_vars);
 					<a href="?a=cart&m=delete&id=<?php echo $this->_tpl_vars['value']['id']; ?>
 " onclick="return confirm('确定要删除吗') ? true : false">删除</a>
 				</td>
+			
 			</tr>
 			<?php endforeach; endif; unset($_from); ?>
-		<?php endforeach; endif; unset($_from); ?>
+			<?php endforeach; else: ?>
+				<td colspan="7">没有任何数据</td>
+		<?php endif; unset($_from); ?>
 		</table>
 		<div id="page"><?php echo $this->_tpl_vars['page']; ?>
 </div>

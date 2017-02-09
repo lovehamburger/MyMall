@@ -24,7 +24,7 @@
 				<th class="th">小计</th>
 			</tr>
 			{assign var=total value=0}
-	{foreach from=$oneOrder.goods key=key item=value}
+		{foreach from=$oneOrder.goods key=key item=value}
 			<tr>
 				<td>{$value.0}</td>
 				<td>{$value.1}</td>
@@ -33,7 +33,7 @@
 				<td class="price">{$value.2*$value.3}/元</td>
 			</tr>
 			{assign var=total value=$total+$value.2*$value.3}
-			{/foreach}
+		{/foreach}
 		</table>
 
 		<table id="cart" cellspacing="1">
@@ -96,6 +96,7 @@
 {if $oneOrder.order_delivery!=='已完成'}
 	<form method="post" name="update" action="?a=order&m=update&id={$oneOrder.id}">
 		<dl class="form">
+		{if $oneOrder.order_pay!=='已支付'}
 			<dd>
 				订单状态：
 				<input type="radio" name="order_state" {if $oneOrder.order_state == '未确认'}checked="checked"{/if} value="0" />
@@ -104,6 +105,10 @@
 				已确认
 				<input type="radio" name="order_state" {if $oneOrder.order_state == '已取消'}checked="checked"{/if} value="2" />
 				已取消
+			{foreach from=$oneOrder.goods key=key item=value}
+				<input type="hidden" name="good[{$key}][]" value="{$value.3}" />
+				<input type="hidden" name="good[{$key}][]" value="{$value.6}" />
+			{/foreach}
 			</dd>
 			<!-- <dd>
 				支付状态：
@@ -112,7 +117,7 @@
 				<input type="radio" name="order_pay" {if $oneOrder.order_pay == '已付款'}checked="checked"{/if} value="已付款" />
 				已付款
 			</dd> -->
-			{if $oneOrder.order_pay=='已支付'}
+			
 			<dd>
 				配送状态：
 				<input type="radio" name="order_delivery" {if $oneOrder.order_delivery == '未发货'}checked="checked"{/if} value="0" />
@@ -121,11 +126,12 @@
 				已配货
 				<input type="radio" name="order_delivery" {if $oneOrder.order_delivery == '已发货'}checked="checked"{/if} value="2" />
 				已发货
-				{if $oneOrder.order_pay=='已支付'}<span style="color: green">用户已支付,支付方式：{$oneOrder.pay}</span>{/if}
 			</dd>
+			<input type="submit" name="send" class="submit" value="修改订单" />
+			{else}
+				<span style="color: green">用户已支付,支付方式：{$oneOrder.pay}</span>
 			{/if}
 			<dd>
-				<input type="submit" name="send" class="submit" value="修改订单" />
 			</dd>
 		</dl>
 	</form>

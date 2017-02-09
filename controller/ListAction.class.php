@@ -19,6 +19,7 @@
 				$this->_tpl->assign('navBread',$this->_nav->findFrontBread());
 				$this->_tpl->assign('navAttr',$this->_nav->findFrontAttr());
 				$this->_tpl->assign('allGoods',$this->_goods->findListGoods());
+				$this->_tpl->assign('hotProduct',$this->_goods->hotProduct());
 				$this->_tpl->assign('url',Tool::setUrl());
 				$this->_tpl->display(SMARTY_FRONT.'public/list.tpl');
 			}else{

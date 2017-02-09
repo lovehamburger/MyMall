@@ -20,8 +20,8 @@ class Tree {
 
 	public function getTree(Array $_allNav,$_val){
 		foreach ($_allNav as $key => $value) {
-				$value['sid'] != '0' ? $_childNav[] = $value : $_mainNav[] = $value;
-			}
+			$value['sid'] != '0' ? $_childNav[] = $value : $_mainNav[] = $value;
+		}
 		foreach ($_allNav as $key => $value) {
 			if($value['id'] == $_val){
 				$_resultNav = $value;

@@ -7,11 +7,15 @@
 		private $_nav = null;
 		private $_order = null;
 		private $_ress = null;
+		private $_cart = null;
+		private $_goods = null;
 		public function __construct() {
 			parent::__construct();
 			$this->_nav = new NavModel();
 			$this->_order = new OrderModel();
+			$this->_cart = new CartModel();
 			$this->_ress = new MemberressModel();
+			$this->_goods = new GoodsModel();
 			if(!isset($_SESSION['member'])){
 				 $this->_redirectObj->succ('?a=member&m=login','请先登录哦亲!');
 			}
@@ -73,6 +77,8 @@
 				$_info = $this->_order->addOrder();
 				if($_info > 0){
 					echo "$_info";
+					$this->_goods->reduceInventory($_POST['cartid']);//添加订单成功后减少商品的数量
+					$this->_cart->deleteCart($_POST['cartid']);//添加订单成功后删除购物车中的商品
 				}
 			}else{
 				$this->_redirectObj->error('非法访问');

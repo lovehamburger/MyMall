@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2017-01-31 20:56:26
+<?php /* Smarty version 2.6.26, created on 2017-02-08 19:15:23
          compiled from default/public/list.tpl */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,6 +11,11 @@
 <body>
 	<?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/header.tpl', 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+	<?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => 'default/public/kf.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
@@ -35,39 +40,26 @@ unset($_smarty_tpl_vars);
 		</ul>
 		<h2>当月热销</h2>
 		<div style="margin:0 0 10px 0">
+		<?php $_from = $this->_tpl_vars['hotProduct']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['key'] => $this->_tpl_vars['value']):
+?>
 			<dl>
 				<dt>
 					<a href="?a=details&id=11">
-						<img src="view/default/images/pro_list_demo_small.jpg" alt="连衣裙" title="连衣裙" />
+						<img style="width: 102px;height: 102px" src="<?php echo $this->_tpl_vars['value']['thumbnail2']; ?>
+" alt="<?php echo $this->_tpl_vars['value']['name']; ?>
+" title="<?php echo $this->_tpl_vars['value']['name']; ?>
+" />
 					</a>
 				</dt>
-				<dd class="price">￥158.00</dd>
+				<dd class="price">￥<?php echo $this->_tpl_vars['value']['price_sale']; ?>
+</dd>
 				<dd class="title">
-					<a href="?a=details&id=11">春秋装韩版蕾丝打底长袖修身性感连衣裙品质显瘦女裙子</a>
+					<a href="?a=details&id=11"><?php echo $this->_tpl_vars['value']['name']; ?>
+</a>
 				</dd>
 			</dl>
-			<dl>
-				<dt>
-					<a href="?a=details&id=11">
-						<img src="view/default/images/pro_list_demo_small.jpg" alt="连衣裙" title="连衣裙" />
-					</a>
-				</dt>
-				<dd class="price">￥158.00</dd>
-				<dd class="title">
-					<a href="?a=details&id=11">春秋装韩版蕾丝打底长袖修身性感连衣裙品质显瘦女裙子</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>
-					<a href="?a=details&id=11">
-						<img src="view/default/images/pro_list_demo_small.jpg" alt="连衣裙" title="连衣裙" />
-					</a>
-				</dt>
-				<dd class="price">￥158.00</dd>
-				<dd class="title">
-					<a href="?a=details&id=11">春秋装韩版蕾丝打底长袖修身性感连衣裙品质显瘦女裙子</a>
-				</dd>
-			</dl>
+		<?php endforeach; endif; unset($_from); ?>
 			<p>
 				<a href="?a=details&id=11">查看更多</a>
 			</p>

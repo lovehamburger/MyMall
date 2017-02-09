@@ -128,9 +128,8 @@
 					$_where.="$value AND " ;
 				}
 				$_where ='WHERE '.substr($_where, 0, -4);
-				$_limit = 'LIMIT 1';
 			}
-			$_sql = "DELETE FROM $_tables[0] $_where $_limit";
+			$_sql = "DELETE FROM $_tables[0] $_where";
 			$_statementObj = $this->execute($_sql);
 			return $_statementObj->rowCount();
 		}
